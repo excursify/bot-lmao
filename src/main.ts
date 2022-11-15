@@ -1,8 +1,8 @@
 import { dirname, importx } from "@discordx/importer";
 import { Koa } from "@discordx/koa";
-import type { Interaction, Message } from "discord.js";
+import { Interaction, Message, Partials } from "discord.js";
 import { IntentsBitField } from "discord.js";
-import { Client } from "discordx";
+import { Client, Reaction } from "discordx";
 
 export const bot = new Client({
   // To use only guild command
@@ -16,6 +16,7 @@ export const bot = new Client({
     IntentsBitField.Flags.GuildMessageReactions,
     IntentsBitField.Flags.GuildVoiceStates,
   ],
+  partials: [Partials.Message, Partials.Channel, Partials.Reaction],
 
   // Debug logs are disabled in silent mode
   silent: false,
@@ -50,6 +51,10 @@ bot.on("interactionCreate", (interaction: Interaction) => {
 
 bot.on("messageCreate", (message: Message) => {
   bot.executeCommand(message);
+});
+
+bot.on("messageReactionAdd", (reaction, user) => {
+  bot.executeReaction(reaction, user);
 });
 
 async function run() {
