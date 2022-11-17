@@ -2,7 +2,7 @@ import { dirname, importx } from "@discordx/importer";
 import { Koa } from "@discordx/koa";
 import { Interaction, Message, Partials } from "discord.js";
 import { IntentsBitField } from "discord.js";
-import { Client, Reaction } from "discordx";
+import { Client } from "discordx";
 
 export const bot = new Client({
   // To use only guild command
@@ -16,14 +16,13 @@ export const bot = new Client({
     IntentsBitField.Flags.GuildMessageReactions,
     IntentsBitField.Flags.GuildVoiceStates,
   ],
-  partials: [Partials.Message, Partials.Channel, Partials.Reaction],
 
   // Debug logs are disabled in silent mode
   silent: false,
 
   // Configuration for @SimpleCommand
   simpleCommand: {
-    prefix: "!",
+    prefix: "?",
   },
 });
 

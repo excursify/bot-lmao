@@ -7,9 +7,9 @@ export class Example {
   messageCreate([message]: ArgsOf<"messageCreate">, client: Client): void {
     console.log(message.content, "", message.author.username);
     const mesAuthor = message.author.username.toLowerCase();
-    if (mesAuthor == "fal") {
-      message.react("lili:1042089397262241812");
-    }
+    //if (mesAuthor == "fal") {
+    //message.react("lili:1042089397262241812");
+    // }
   }
 
   @On()

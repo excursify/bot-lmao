@@ -12,22 +12,8 @@ import {
 export class Example {
   @SimpleCommand({ aliases: ["hi"] })
   hello(command: SimpleCommandMessage): void {
+    console.log("Does it reach here??");
     command.message.reply(`👋 ${command.message.member}`);
-  }
-
-  @SimpleCommand({ argSplitter: "+" })
-  sum(
-    @SimpleCommandOption({ name: "num1", type: SimpleCommandOptionType.Number })
-    num1: number | undefined,
-    @SimpleCommandOption({ name: "num2", type: SimpleCommandOptionType.Number })
-    num2: number | undefined,
-    command: SimpleCommandMessage
-  ): void {
-    if (!num1 || !num2) {
-      command.sendUsageSyntax();
-      return;
-    }
-    command.message.reply(`total = ${num1 + num2}`);
   }
 
   // make single handler for simple and slash command
